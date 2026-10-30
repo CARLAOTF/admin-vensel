@@ -1,4 +1,4 @@
-local player=game:GetService("Players").LocalPlayer
+Local player=game:GetService("Players").LocalPlayer
 if not player then warn("Vercel: entre no jogo primeiro");return end
 local parent=player:FindFirstChildOfClass("PlayerGui")
 if not parent then warn("Vercel: PlayerGui indisponível");return end
@@ -84,7 +84,7 @@ return Rules
 end)()
 local function runPanel()
 startupCheckpoint("serviços Roblox")
-local API_URL   = "https://vercel-api-ten-phi.vercel.app"
+local API_URL   = "https://v.rrcxg-rr.workers.dev"
 local ADMIN_KEY = ""
 local PREFIX    = "!"
 
