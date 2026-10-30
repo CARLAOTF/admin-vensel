@@ -84,7 +84,7 @@ return Rules
 end)()
 local function runPanel()
 startupCheckpoint("serviços Roblox")
-local API_URL   = "https://v.rrcxg-rr.workers.dev"
+local API_URL   = "https://vercel-api-ten-phi.vercel.app" -- Altere aqui se precisar de outro link
 local ADMIN_KEY = ""
 local PREFIX    = "!"
 
@@ -170,10 +170,6 @@ local function sendCommand(name, args, targets, scope)
 	})
 end
 
-
-
-
-
 local AdminCommands = {
 	{name = "kill",     label = "💀 Matar"},
 	{name = "me",       label = "🧲 Trazer até mim"},
@@ -195,11 +191,9 @@ local AdminCommands = {
 	{name = "kick",     label = "👢 Kickar [motivo]", joinArgs = true},
 }
 
-
 local byName = {}
 for _, c in ipairs(AdminCommands) do byName[c.name] = c end
 byName.announce = {name = "announce", joinArgs = true}
-
 
 local C = {
  bg = Color3.fromRGB(13,16,23), panel = Color3.fromRGB(20,24,32), field = Color3.fromRGB(24,30,40),
@@ -254,7 +248,6 @@ local function fmtDur(sec)
 	return string.format("%dm", m)
 end
 
-
 local gui = new("ScreenGui", {Name = "VercelAdmin", ResetOnSpawn = false, ZIndexBehavior = Enum.ZIndexBehavior.Sibling, DisplayOrder = 100}, parentGui)
 
 local frame = new("Frame", {Size = UDim2.fromOffset(720,500), Position = UDim2.new(0.5,-360,0.5,-250), BackgroundColor3 = C.bg, Active = true, Draggable = true}, gui)
@@ -306,7 +299,6 @@ local function setOpen(open)
 end
 minBtn.MouseButton1Click:Connect(function() setOpen(false) end)
 reopen.MouseButton1Click:Connect(function() setOpen(true) end)
-
 
 local selected = {}        
 local activeUsers = {}     
@@ -504,7 +496,6 @@ gotoBtn.MouseButton1Click:Connect(function()
 	end
 end)
 
-
 label(commandsPane, "PARÂMETROS", 10)
 local argBox = box(commandsPane, "valor, segundos ou texto...", 11, 30)
 label(commandsPane, "COMANDOS", 12)
@@ -542,7 +533,6 @@ for i, def in ipairs(AdminCommands) do
 	b.TextSize = 12
 	b.MouseButton1Click:Connect(function() run(def, argBox.Text) end)
 end
-
 
 local function mountLocationCapture()
  local saved=""
@@ -613,7 +603,6 @@ sendMsg.MouseButton1Click:Connect(function()
 	end)
 end)
 
-
 local onlineBtn = usersTab
 
 local online = new("Frame", {Size = UDim2.new(1,0,1,-38), Position = UDim2.fromOffset(0,38), BackgroundColor3 = C.bg, Visible = false}, right)
@@ -678,7 +667,6 @@ loadOnline=function()
  renderOnline()
  loadTargets()
 end
-
 
 local ADMIN_NAME = "Valença"
 local chatPane = pane(); chatPane.Visible = false
@@ -823,7 +811,6 @@ task.spawn(function()
 		if alive and ((frame.Visible and chatPane.Visible) or phoneGui.Visible) then pcall(chatSync) end
 	end
 end)
-
 
 local tagsPane, tagResults, loadTagList, loadTagUser, picker
 local function buildTagEditor()
@@ -1063,7 +1050,6 @@ tagUseSel.MouseButton1Click:Connect(function()
 	if tagSearch.Text:match("^%d+$") then loadTagUser(tagSearch.Text) else setStatus("selecione 1 pessoa na lista da esquerda", C.bad) end
 end)
 
-
 do
  local row=hrow(12,30)
  local giveAura=button(row,"Doar aura",1,UDim2.new(0.5,-3,1,0))
@@ -1088,7 +1074,6 @@ do
  giveAura.MouseButton1Click:Connect(function() if edit.userId then grants.Visible=true else setStatus("escolha alguém primeiro",C.bad) end end)
  giveTheme.MouseButton1Click:Connect(function() donate("themes","Singularity") end)
 end
-
 
 picker = new("Frame", {Size = UDim2.new(1, -24, 1, -56), Position = UDim2.fromOffset(12, 44), BackgroundColor3 = C.bg, Visible = false, ZIndex = 20}, frame)
 corner(picker, 10); stroke(picker, C.accent)
@@ -1153,7 +1138,6 @@ task.spawn(function()
 		if alive and frame.Visible and online.Visible then loadOnline() end
 	end
 end)
-
 
 local function parseChatTarget(rest)
 	local token, after = rest:match("^@(%S+)%s*(.*)$")
@@ -1255,7 +1239,6 @@ do
  uiReady=true
  if ADMIN_KEY~="" then task.defer(submit) end
 end
-
 
 env.VHUB_ADMIN_SHUTDOWN = function()
 	alive = false
